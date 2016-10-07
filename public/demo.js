@@ -1,4 +1,4 @@
-const Sibilant = require('../sibilant.js')
+const Sibilant = require('sibilant-webaudio')
 const alert = require('alerts')
 const getUserMedia = require('getusermedia')
 const attachmediastream = require('attachmediastream')
@@ -15,9 +15,6 @@ getUserMedia(function (err, stream) {
     document.querySelector('#vid video').muted = true
     var speakingEvents = new Sibilant(stream, {passThrough: false})
     //make a new meeting, add person to meeting
-    socket.emit('meeting created', function(){
-      console.log('meeting has been created')
-    })
     speakingEvents.bind('speaking', function () {
       document.querySelector('#vid video').style.border = '10px solid #27ae60'
       console.log('speaking!')
